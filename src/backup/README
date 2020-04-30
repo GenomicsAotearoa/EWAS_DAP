@@ -1,0 +1,7 @@
+r_script_dmpfinder2+champCont.R : File is a working version of script, in which contineous variables are segregated using dmpfinder and catagorical variable is seg using cahmp.dmp.
+
+r_script_LDS_champALL.R         : File is a working version of script, in which all covariate identfication is done through champ on mvalues.
+
+beta_ValuesIP.R                 :  Working version of script in which all covariates are identified using champ on beta values.
+
+output_withInitialPopUP_.php	: Working file contain initial popup screen in next version popup will be removed and output text linked as summary.
