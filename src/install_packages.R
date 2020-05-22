@@ -1,3 +1,12 @@
 install.packages("stringr")
 install.packages("BiocManager")
 BiocManager::install("ChAMP")
+install.packages("qqman")
+install.packages("zip")
+install.packages("QCEWAS")
+install.packages("samr")
+BiocManager::install("IlluminaHumanMethylation450kanno.ilmn12.hg19")
+BiocManager::install("IlluminaHumanMethylationEPICanno.ilm10b4.hg19")
+BiocManager::install("ComplexHeatmap")
+BiocManager::install("mailR")
+
