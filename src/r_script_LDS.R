@@ -28,7 +28,7 @@ deconv					<-	toString(args[11])
 com_type				<-	toString(args[12])
 array_corr				<-  toString(args[13])
 batch_corr				<-	toString(args[14])
-norm_name                               <-      toString(args[15])
+norm_name               <-  toString(args[15])
 
 
 
@@ -129,13 +129,15 @@ if(data_load_method == 1) {
 	#myLoad1	<-	champ.filter ( beta=myLoad2$beta, pd=myLoad2$pd, fixOutlier = TRUE, arraytype = arraytype )
 	#myLoad		<-	champ.impute ( beta=myLoad1$beta, pd=myLoad1$pd, method="Combine", k=4, ProbeCutoff=0.5, SampleCutoff=0.1)
 	#norm		<-	champ.norm   ( beta=myLoad$beta, method=normalize, arraytype=arraytype, cores=2 )
-
-
+	print("*** 0")
+	print(getwd())
 	myLoad	<-	champ.import(directory = getwd(), offset=100, arraytype=arraytype)
+	print("*** 1")
 	#meth	<-	NROW(myLoad$Meth)
 	#unmeth	<-	dim(myLoad$UnMeth)
 
 		unlink("CHAMP_QCimages", recursive = TRUE)
+		print("*** 2")
 		com_group	<-	eval(parse(text=paste(pheno, sep ="")))
 
 		file		<-	paste(foldername, "/QC_MDS_WithoutDataFilter_PCAPlot.jpg", sep = "")
@@ -178,14 +180,17 @@ if(data_load_method == 1) {
 	}
 	else {
 		print ("Selected minfi")
+		print("*** 0")
 		targets 	<- 		read.metharray.sheet(getwd(), pattern="covar_final.csv")
+		print("*** 1")
 		rgSet 		<- 		read.metharray.exp(targets=targets)
 		print(rgSet)
+		print("*** 2")
 		detP		<-		detectionP(rgSet)
 		keep		<-		colMeans(detP) < 0.05
 		rgSet		<-		rgSet[,keep]
 		targets		<-		targets[keep,]
-
+		print("*** 3")
 		#mset		<-		eval(parse(text=paste(normalize, "(", "rgSet", ")", sep = "")))
 		mset            <-              eval(parse(text=paste("preprocessIllumina(rgSet, bg.correct=TRUE, normalize='controls', reference = 1)", sep = "")))
 		print(mset)
@@ -206,10 +211,10 @@ if(data_load_method == 1) {
 	},
 	error = function(c) {
 		output		<-	paste(output, "\n\nQC - module error", sep="")
-	},
-	warning = function(c) {
-		output		<-	paste(output, "\n\nQC - module error", sep="")
 	}
+	# , warning = function(c) {
+	#	output		<-	paste(output, "\n\nQC - module error", sep="")
+	# }
 )
 
 #if(dim(norm)) { 
