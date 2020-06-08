@@ -137,6 +137,7 @@ if(data_load_method == 1) {
 	#unmeth	<-	dim(myLoad$UnMeth)
 
 		unlink("CHAMP_QCimages", recursive = TRUE)
+		dir.create("CHAMP_QCimages", showWarnings = TRUE, recursive = FALSE, mode = "0644")
 		print("*** 2")
 		com_group	<-	eval(parse(text=paste(pheno, sep ="")))
 
@@ -144,13 +145,17 @@ if(data_load_method == 1) {
 		jpeg(file, width = 1200, height = 1200)
 		champ.QC    (	beta = myLoad$beta, pheno=com_group, mdsPlot=TRUE, densityPlot=FALSE, dendrogram=FALSE, PDFplot=TRUE, Rplot=TRUE, Feature.sel="SVD", resultsDir="./CHAMP_QCimages/"  )
 		dev.off()
+
 		unlink("CHAMP_QCimages", recursive = TRUE)
-	
+		dir.create("CHAMP_QCimages", showWarnings = TRUE, recursive = FALSE, mode = "0644")
+
 		file		<-	paste(foldername, "/QC_MDS_WithoutDataFilter_DensityPlot.jpg", sep = "")
 		jpeg(file, width = 1200, height = 1200)
 		champ.QC    (	beta = myLoad$beta, pheno=com_group, mdsPlot=FALSE, densityPlot=TRUE, dendrogram=FALSE, PDFplot=TRUE, Rplot=TRUE, Feature.sel="SVD", resultsDir="./CHAMP_QCimages/" )
 		dev.off()
+		
 		unlink("CHAMP_QCimages", recursive = TRUE)
+		dir.create("CHAMP_QCimages", showWarnings = TRUE, recursive = FALSE, mode = "0644")
 
 
 	
@@ -167,6 +172,7 @@ if(data_load_method == 1) {
 		champ.QC    (	beta = myLoad$beta, pheno=com_group, mdsPlot=TRUE, densityPlot=FALSE, dendrogram=FALSE, PDFplot=TRUE, Rplot=TRUE, Feature.sel="SVD", resultsDir="./CHAMP_QCimages/" )
 		dev.off()
 		unlink("CHAMP_QCimages", recursive = TRUE)
+		dir.create("CHAMP_QCimages", showWarnings = TRUE, recursive = FALSE, mode = "0644")
 
 	myLoad		<-	champ.impute ( beta=myLoad$beta, pd=myLoad$pd, method="Combine", k=4, ProbeCutoff=0.5, SampleCutoff=0.1)
         norm            <-      champ.norm   ( beta=myLoad$beta, method="BMIQ", arraytype=arraytype, cores=2 )
@@ -435,7 +441,7 @@ unlink("CHAMP_QCimages", recursive = TRUE)
 file		<-	paste ( foldername, "/com_type.txt", sep = "")
 write.table (com_type, file, quote = TRUE, sep = ",", row.names = FALSE, col.names = FALSE)
 
-snps			<-	read.table("../snps.txt", header = FALSE) 	  	### for volcano plot reading snps
+
 m_values		<-	log2(norm/(1 - norm))
 #m_values		<-	norm
 
@@ -673,6 +679,8 @@ tryCatch( {
 				################################################################################
 		 		
 				##################### Code for volcano plot goes here . . . ####################
+
+				snps			<-	read.table("../snps.txt", header = FALSE) 	  	### for volcano plot reading snps
 				
 				DMPs[[no_dmps]]$view			<-		1
 				DMPs[[no_dmps]]$view[1:10]		<-		2
