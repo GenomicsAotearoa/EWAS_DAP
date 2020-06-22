@@ -1,6 +1,7 @@
 FROM php:7.4-apache
 COPY src/ /var/www/html
 COPY php.ini $PHP_INI_DIR/conf.d/
+COPY ports.conf /etc/apache2/ports.conf
 COPY main.sh main.sh
 # RUN apt-get update && apt-get install -y gnupg2
 # RUN echo 'deb http://cloud.r-project.org/bin/linux/debian buster-cran40/' >> /etc/apt/sources.list
@@ -14,4 +15,4 @@ COPY main.sh main.sh
 # RUN Rscript /var/www/html/install_packages.R
 # CMD ./main.sh
 RUN chmod +x /var/www/html/sws/csvtk
-EXPOSE 80
+EXPOSE 8080
