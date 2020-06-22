@@ -1,0 +1,4 @@
+#!/bin/bash
+docker build -t ewas .
+# docker tag dashboard ewas:latest
+# docker push ewas:latest

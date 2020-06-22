@@ -1,0 +1,4 @@
+#!/bin/bash
+singularity build ewas.img docker-daemon:ewas:latest
+# docker tag dashboard ewas:latest
+# docker push ewas:latest
