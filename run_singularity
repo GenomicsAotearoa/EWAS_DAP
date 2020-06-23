@@ -3,7 +3,7 @@ if [ -f .env ]
 then
   export $(cat .env | xargs)
 fi
-singularity run --writable-tmpfs -B /home/mlab289/temp:/var/run/apache2/  ewas.img ./main.sh $@
+singularity run --writable-tmpfs -B ${PWD}/temp:/var/run/apache2/  ewas.img ./main.sh $@
 # singularity run --writable-tmpfs     --fakeroot --net --network-args "portmap=8080:80/tcp" ewas.img
 # singularity exec --writable -B /Users/mlab289/temp:/var/run/apache2/ ewas.img ./main.sh $@
 # singularity shell docker-daemon:ewas:latest ./main.sh $@

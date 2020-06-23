@@ -1,6 +1,4 @@
 #!/bin/bash
-echo 'Hello, World!'
-
 # dir                     <-  toString(args[1])
 # normalize               <-  toString(args[2])
 # email                   <-  toString(args[3])
@@ -17,10 +15,10 @@ echo 'Hello, World!'
 # batch_corr              <-  toString(args[14])
 # norm_name               <-  toString(args[15])
 
-MODE="console"
-EWAS_OUT = ""
-EWAS_UPLOADS = ""
-EWAS_RESULTS = ""
+MODE="web"
+EWAS_OUT=""
+EWAS_UPLOADS=""
+EWAS_RESULTS=""
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]

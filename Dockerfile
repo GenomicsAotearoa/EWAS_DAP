@@ -15,4 +15,4 @@ COPY main.sh main.sh
 # RUN Rscript /var/www/html/install_packages.R
 # CMD ./main.sh
 RUN chmod +x /var/www/html/sws/csvtk
-EXPOSE 8080
+EXPOSE 8083

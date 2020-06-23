@@ -1,0 +1,12 @@
+#!/bin/bash
+mkdir -p ewas_data/out
+mkdir -p ewas_data/uploads
+mkdir -p ewas_data/results
+mkdir -p temp
+
+if [ -f .env ]
+then
+  export $(cat .env | xargs)
+fi
+
+singularity run --writable-tmpfs -B ${PWD}/temp:/var/run/apache2/  ewas.img ./main.sh -o  ${EWAS_OUT} -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} $@
