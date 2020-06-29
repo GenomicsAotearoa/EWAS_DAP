@@ -3,4 +3,4 @@ if [ -f .env ]
 then
   export $(cat .env | xargs)
 fi
-docker run -p 80:80 --mount type=bind,source=$EWAS_OUT,target=/app/out --mount type=bind,source=$EWAS_UPLOADS,target=/mnt/data/uploads --mount type=bind,source=$EWAS_RESULTS,target=/app/results ewas
+docker run -p 8083:8083 --mount type=bind,source=$EWAS_OUT,target=/app/out --mount type=bind,source=$EWAS_UPLOADS,target=/mnt/data/uploads --mount type=bind,source=$EWAS_RESULTS,target=/app/results ewas

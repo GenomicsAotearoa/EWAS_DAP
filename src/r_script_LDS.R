@@ -784,9 +784,9 @@ file		<-		paste(foldername, "/manhattan.php", sep = "")
 vol_vis 	<-		file.copy("../out/manhattan.php", file, overwrite = TRUE)
 
 
-link		<-		paste("Hi,\n\nHere is the data analysis result.\n", number_of_dmps, "\n\nhttp://130.216.216.57/ewas/ewas_pip/results/", folder, "/output.php", "\n\n\nAnalysis summary:\n\n", output, sep="") 
+link		<-		paste("Hi,\n\nHere is the data analysis result.\n", number_of_dmps, paste("\n\n",Sys.getenv('EWAS_ROOT'),sep = "") , folder, "/output.php", "\n\n\nAnalysis summary:\n\n", output, sep="") 
 
-send.mail(from="ewasdap20@gmail.com", to = email, subject = "EWAS Data analysis result", body = link, smtp = list(host.name = "smtp.gmail.com", port = 465, user.name = "ewasdap20@gmail.com", passwd = "dzofhekyhipuncqy", ssl = TRUE), authenticate = TRUE, send = TRUE)
+send.mail(from = Sys.getenv('EWAS_EMAIL_FROM'), to = email, subject = "EWAS Data analysis result", body = link, smtp = list(host.name =  Sys.getenv('EWAS_EMAIL_HOST'), port = Sys.getenv('EWAS_EMAIL_PORT'), user.name = Sys.getenv('EWAS_EMAIL_USER'), passwd = Sys.getenv('EWAS_EMAIL_PASSWORD'), ssl = TRUE), authenticate = TRUE, send = TRUE)
 
 
 #OutApp					<-		COMCreate("Outlook.Application")
