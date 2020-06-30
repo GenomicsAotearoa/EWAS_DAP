@@ -1,0 +1,40 @@
+#!/bin/bash
+#SBATCH --job-name=ewas     # job name in the queue
+#SBATCH --time=01:00:00     # wall time
+#SBATCH --ntasks=1          # number of tasks (e.g. MPI processes)
+#SBATCH --cpus-per-task=1   # number of threads per task (e.g. OpenMP)
+#SBATCH --mem=8G            # amount of memory to request
+
+if [ -f .env ]
+then
+  export $(cat .env | xargs)
+fi
+
+# set input variables here
+export EWAS_IMG=../ewas.img
+export EWAS_ROOT=${PWD}/ewas_data
+export EWAS_OUT=${EWAS_ROOT}/out
+export EWAS_UPLOADS=${EWAS_ROOT}/uploads
+export EWAS_RESULTS=${EWAS_ROOT}/results
+
+# load singularity module
+module load Singularity
+
+# set up port forwarding between node that submitted job to compute node it is running on
+port=8083
+echo "EWAS will be started on $(hostname) and port forwarding established from $SLURM_SUBMIT_HOST on port $port"
+ssh -N -R ${port}:localhost:${port} $SLURM_SUBMIT_HOST &
+
+# make sure directories exist
+mkdir -p temp
+mkdir -p $EWAS_OUT
+mkdir -p $EWAS_UPLOADS
+mkdir -p $EWAS_RESULTS
+
+# with email 
+#singularity run --writable-tmpfs --no-home -B ${PWD}/temp:/var/run/apache2/,${PWD}/ewas_data/uploads:/mnt/data/uploads ${EWAS_IMG} ./main.sh -o  ${EWAS_OUT} \
+# -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT} -f ${EWAS_EMAIL_FROM}  -h ${EWAS_EMAIL_HOST}  -p ${EWAS_EMAIL_PORT} -s ${EWAS_EMAIL_USER} -w ${EWAS_EMAIL_PASSWORD}  $@
+
+# without email (probably won't work)
+singularity run --writable-tmpfs --no-home -B ${PWD}/temp:/var/run/apache2/,${PWD}/ewas_data/uploads:/mnt/data/uploads ${EWAS_IMG} ./main.sh -o  ${EWAS_OUT} \
+ -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT}  $@
