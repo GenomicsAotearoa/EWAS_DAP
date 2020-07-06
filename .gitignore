@@ -1,3 +1,5 @@
 *.img
 ewas_data/*
 temp/*
+myports.conf
+slurm-*.out
