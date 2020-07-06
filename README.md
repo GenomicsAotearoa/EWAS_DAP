@@ -61,4 +61,5 @@ Then to run on the cluster:
 1. set up port forwarding, e.g. on your local machine run `ssh -L 8083:localhost:8083 mahuika`
 2. set the environment variables (on the cluster)
 3. submit the run script to the queue `sbatch run_ewas_slurm` (on the cluster)
-4. on your local machine connect to http://localhost:8083/
+4. check the status of the Slurm job `squeue -u $USER` (on the cluster)
+5. once the job is running, on your local machine connect to http://localhost:8083/
