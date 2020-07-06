@@ -51,8 +51,15 @@ EWAS_EMAIL_PASSWORD
 
 # To run on HPC/singularity
 
-Note: you must first build the singularity image on a system where docker can run in priviledged mode
+Note: you must first build the singularity image on a system where docker can run in priviledged mode:
+
 1. run "sudo ./build" to build the docker image and produce a corresponding singularity file (ewas.img) 
 2. copy the ewas.img file to a location on the cluster where the job will run from
-3. set the environment variables 
-4. run `./run_ewas_slurm`
+
+Then to run on the cluster:
+
+1. set up port forwarding, e.g. on your local machine run `ssh -L 8083:localhost:8083 mahuika`
+2. set the environment variables (on the cluster)
+3. submit the run script to the queue `sbatch run_ewas_slurm` (on the cluster)
+4. check the status of the Slurm job `squeue -u $USER` (on the cluster)
+5. once the job is running, on your local machine connect to http://localhost:8083/
