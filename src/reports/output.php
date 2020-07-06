@@ -36,11 +36,15 @@
             <!--logo -->
             <div class="logo_box">
                 <a href="#">
-                    <img src="http://130.216.216.57/ewas/ewas_pip/img/ga_logo.jpeg" alt="cocoon">
+                    <img src="/reports/assets/ga_logo.jpeg" alt="cocoon">
                 </a>
             </div>
             <!--logo end-->
             <?php
+                $result_id       =   $_GET['result_id'];
+                $target_folder   = join(getenv("EWAS_UPLOADS"),"/results/",$result_id)
+                echo $target_folder
+                chdir($target_folder)
                 $com_type		=	file_get_contents("com_type.txt");
                 $com_type		=	str_replace('"','',$com_type);
             ?>
@@ -139,9 +143,9 @@
                     
                  echo "</ul>";
                  echo "<br/><br/>";
-                 echo "<img src=\"http://130.216.216.57/ewas/ewas_pip/out/svd_convention.jpg\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
+                 echo "<img src=\"/reports/assets/svd_convention.jpg\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
 		 echo "<br/><br/>";
-		 echo "<img src=\"http://130.216.216.57/ewas/ewas_pip/img/uoo.png\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
+		 echo "<img src=\"/reports/assets/uoo.png\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
              echo "</div>";
 			
 			?>
