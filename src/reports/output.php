@@ -42,9 +42,9 @@
             <!--logo end-->
             <?php
                 $result_id       =   $_GET['result_id'];
-                $target_folder   = join(getenv("EWAS_UPLOADS"),"/results/",$result_id)
-                echo $target_folder
-                chdir($target_folder)
+                $target_folder   = join(getenv("EWAS_UPLOADS"),"/results/",$result_id);
+                echo $target_folder;
+                chdir($target_folder);
                 $com_type		=	file_get_contents("com_type.txt");
                 $com_type		=	str_replace('"','',$com_type);
             ?>
