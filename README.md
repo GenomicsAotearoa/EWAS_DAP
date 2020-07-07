@@ -4,7 +4,7 @@ This repository contains the code base for our EWAS pipeline tools.
 
 # To run locally
 
-...
+Build the docker and singularity images, make sure .env file contains the right values and then invoke ./run_ewas script
 
 # Building Docker image
 
@@ -29,15 +29,16 @@ To build both Docker and Singularity images run `sudo ./build`
 
 # Environment variables
 
-EWAS_OUT
-EWAS_UPLOADS
-EWAS_RESULTS
-EWAS_ROOT
-EWAS_EMAIL_FROM 
-EWAS_EMAIL_HOST
-EWAS_EMAIL_PORT
-EWAS_EMAIL_USER
-EWAS_EMAIL_PASSWORD
+These are best set in a .env file that can be placed in the same folder as the run_ewas or run_ewas_slurm script. Sample .env file is available in this project
+
+EWAS_OUT - path to the directory to be used as output directory - not used currently
+EWAS_UPLOADS - path to the directory to be used as uploads directory - this is where the uploaded files will be stored as well as results
+EWAS_RESULTS - path to the directory to be used as results directory - not used currently
+EWAS_EMAIL_FROM - "from" email address to be used in the job report email
+EWAS_EMAIL_HOST - email server host to be used for sending the job report email (i.e. smtp.gmail.com)
+EWAS_EMAIL_PORT - email server port to be used for sending the job report email (i.e. 495)
+EWAS_EMAIL_USER - email server's username used for login
+EWAS_EMAIL_PASSWORD - email server's user password - KEEP CONFIDENTIAL !!!
 
 # Running the docker image
 
@@ -47,7 +48,7 @@ EWAS_EMAIL_PASSWORD
 # Running the singularity image
 
 1. Modify the .env file to set the correct variable values or set these in the current environment
-2. run `sudo ./run_docker`
+2. run `sudo ./run_ewas`
 
 # To run on HPC/singularity
 
