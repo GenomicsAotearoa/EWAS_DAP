@@ -12,7 +12,7 @@ fi
 
 # set input variables here
 export EWAS_PORT=10083  # port must not in use by other users, make sure it is the same port your forwarded to the cluster
-export EWAS_IMG=../ewas.img  # path to the EWAS singularity image you uploaded
+export EWAS_IMG=${PWD}/ewas.img  # path to the EWAS singularity image you uploaded
 export EWAS_ROOT=${PWD}/ewas_data  # EWAS data directory paths
 export EWAS_OUT=${EWAS_ROOT}/out
 export EWAS_UPLOADS=${EWAS_ROOT}/uploads
