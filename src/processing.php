@@ -100,6 +100,7 @@ print "Covariate selected : $covar ($number_of_covar)<br/>";
 	print ("No covar selected.</br/>");
 }
 
+
 if(isset($_POST["samples"])) {
 $temp1			=		explode ("**", $_POST["samples"]);
 $ip			=		$temp1[0];                 # folder for storing info
@@ -129,6 +130,7 @@ $number_of_samples		=		count ($samples);
 $covar = preg_replace('/[^A-Za-z0-9_,]/', '', $covar);
 $pheno = preg_replace('/[^A-Za-z0-9_,]/', '', $pheno);
 
+
 if($number_of_covar > 0) {
 	$covar_file1			=	shell_exec("sws/csvtk cut -f ID,$covar,$pheno $ip/covar.csv");
 } else {
@@ -150,6 +152,7 @@ foreach ($samples as $val) {
 		}
 	}
 }
+
 
 $covar_file6		=		explode("\n", $covar_file5);
 $number_of_samples	=		sizeof($covar_file6);

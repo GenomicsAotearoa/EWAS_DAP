@@ -16,6 +16,9 @@
 					echo "Error in processing data, try again or contact administrator.";
 					exit();
 				}
+				$result_id       =   $_GET['result_id'];
+                $target_folder   = "/mnt/data/uploads/results/" . $result_id;
+                chdir($target_folder);
 				$file				=	"manhattan_plotting_" . $data . ".csv";
 				$data				=	file_get_contents($file);
 				$data				=	str_replace("\"","", $data);

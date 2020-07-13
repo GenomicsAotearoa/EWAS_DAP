@@ -42,11 +42,11 @@
             <!--logo end-->
             <?php
                 $result_id       =   $_GET['result_id'];
-                $target_folder   = join(getenv("EWAS_UPLOADS"),"/results/",$result_id);
-                echo $target_folder;
+                $target_folder   = "/mnt/data/uploads/results/" . $result_id;
                 chdir($target_folder);
                 $com_type		=	file_get_contents("com_type.txt");
                 $com_type		=	str_replace('"','',$com_type);
+                $path = "/files/" . $result_id . "/";
             ?>
             <!--filter menu -->
             <div class="side_menu_section">
@@ -92,42 +92,42 @@
 				 
 					if ($summ) {
 						 echo "<li>";
-							 echo "<a href=\"Analysis_Summary.txt\">";
+							 echo "<a href=\"" . $path . "Analysis_Summary.txt\">";
 								echo "Analysis summary";
 							 echo "</a>";
 						 echo "</li>";
 					}
 					
                      echo "<li>";
-                         echo "<a href=\"result.zip\">";
+                         echo "<a href=\""  . $path . "result.zip\">";
                             echo "Download all results (ZIP file)";
                          echo "</a>";
                      echo "</li>";
 					 
 					if ($beta) {
 						 echo "<li>";
-							 echo "<a href=\"beta.csv\">";
+							 echo "<a href=\""   . $path . "beta.csv\">";
 								echo "Beta values";
 							 echo "</a>";
 						 echo "</li>";
 					}
 					if ($horvath) {
 						 echo "<li>";
-							 echo "<a href=\"horvath_server_CPG_sites.csv\">";
+							 echo "<a href=\""  . $path . "horvath_server_CPG_sites.csv\">";
 								echo "Download beta values for Horvath server";
 							 echo "</a>";
 						 echo "</li>";
 					}
 					if ($DMRs) {
 						echo "<li>";
-							 echo "<a href=\"DMRs.csv\">";
+							 echo "<a href=\""  . $path . "DMRs.csv\">";
 								echo "Download list of DMRs";
 							 echo "</a>";
 						 echo "</li>";
 					}
                     if ($BCC) {
                         echo "<li>";
-                            echo "<a href=\"BloodCellCoef.csv\">";
+                            echo "<a href=\""  . $path . "BloodCellCoef.csv\">";
                                 echo "Blood Cell Coefficients";
                             echo "</a>";
                         echo "</li>";
@@ -135,7 +135,7 @@
 					 echo "<h4 class=\"side_title\" style=\" color:#ffe2b2;margin-bottom: -5px;margin-top: 25px;\">Download DMPs</h4>";
 					 foreach ($DMP as $value) {
                      echo "<li>";
-                         echo "<a href=\"$value\">";
+                         echo "<a href=\""  . $path . "$value\">";
                             echo "<font size=\" -1 \">DMPs : \"$value\" </font>";
                          echo "</a>";
                      echo "</li>";
@@ -169,11 +169,11 @@
 						foreach ($manhat as $value) {
                             echo "<div class=\"grid-item  manhatten_plot  col-sm-12 col-md-6 col-lg-3\">";
                               $stage_temp		=	str_ireplace(".graph_M.Png","",$value);
-                                echo "<a href=\"$value\" title=\"Manhattan Plot (stage : $stage_temp)\">";
+                                echo "<a href=\""  . $path . "$value\" title=\"Manhattan Plot (stage : $stage_temp)\">";
                                     echo "<div class=\"project_box_one\">";
-                                        echo "<img src=\"$value\" alt=\"pro1\" />";
+                                        echo "<img src=\""  . $path . "$value\" alt=\"pro1\" />";
                                         echo "<div class=\"product_info\">";										
-                                            echo "<input type=\"button\" onclick=\"window.open('manhattan.php?data=$stage_temp')\" value=\"Click here for interactive Manhattan Plot\"/>";
+                                            echo "<input type=\"button\" onclick=\"window.open('manhattan.php?data=$stage_temp&result_id=$result_id')\" value=\"Click here for interactive Manhattan Plot\"/>";
                                             echo "<div class=\"product_info_text\">";
                                                 echo "<div class=\"product_info_text_inner\">";
                                                     echo "<i class=\"ion ion-plus\"></i>";
@@ -189,9 +189,9 @@
 												
 						foreach ($QQ as $value) {
                         echo "<div class=\"grid-item qq_plot col-sm-12 col-md-6 col-lg-3\">";
-                            echo "<a href=\"$value\" title=\"QQ Plot (stage : $value)\">";
+                            echo "<a href=\""  . $path . "$value\" title=\"QQ Plot (stage : $value)\">";
                                 echo "<div class=\"project_box_one\">";
-                                    echo "<img src=\"$value\" alt=\"pro1\" />";
+                                    echo "<img src=\""  . $path . "$value\" alt=\"pro1\" />";
                                     echo "<div class=\"product_info\">";
                                         echo "<div class=\"product_info_text\">";
                                             echo "<div class=\"product_info_text_inner\">";
@@ -207,9 +207,9 @@
 						
 						foreach ($HM as $value) {
                             echo "<div class=\"grid-item  heatmap col-sm-12 col-md-6 col-lg-3\">";
-                            echo "<a href=\"$value\" title=\"Heatmap (stage : $value)\">";
+                            echo "<a href=\""  . $path . "$value\" title=\"Heatmap (stage : $value)\">";
                                     echo "<div class=\"project_box_one\">";
-                                        echo "<img src=\"$value\" alt=\"pro1\" />";
+                                        echo "<img src=\""  . $path . "$value\" alt=\"pro1\" />";
                                         echo "<div class=\"product_info\">";
                                             echo "<div class=\"product_info_text\">";
                                                 echo "<div class=\"product_info_text_inner\">";
@@ -226,12 +226,12 @@
 						foreach ($vol as $value) {
                         echo "<div class=\"grid-item volcano col-sm-12 col-md-6 col-lg-3\">";
 						  $stage_temp		=	str_ireplace("_volcano_plot.jpg","",$value);
-                            echo "<a href=\"$value\" title=\"Volcano Plot (stage : $stage_temp)\">";
+                            echo "<a href=\""  . $path . "$value\" title=\"Volcano Plot (stage : $stage_temp)\">";
                                 echo "<div class=\"project_box_one\">";
-                                    echo "<img src=\"$value\" alt=\"pro1\" />";
+                                    echo "<img src=\""  . $path . "$value\" alt=\"pro1\" />";
                                     echo "<div class=\"product_info\">";
                                         echo "<div class=\"product_info_text\">";																				
-										echo "<input type=\"button\" onclick=\"window.open('volcano.php?data=$stage_temp')\" value=\"Click here for interactive volcano plot.\"/>";
+										echo "<input type=\"button\" onclick=\"window.open('volcano.php?data=$stage_temp&result_id=$result_id')\" value=\"Click here for interactive volcano plot.\"/>";
                                             echo "<div class=\"product_info_text_inner\">";
                                                 echo "<i class=\"ion ion-plus\"></i>";
                                                 echo "<h4>Volcano Plot stage : $stage_temp</h4>";
@@ -247,9 +247,9 @@
                             $new_value		=	str_replace("myLoad\$pd\$","",$value);
                             $new_value		=	str_replace("_SVD_QC","",$new_value);							
                             echo "<div class=\"grid-item QC col-sm-12 col-md-6 col-lg-3\">";
-                                echo "<a href=\"$value\" title=\"Quality Control (stage : $new_value)\">";
+                                echo "<a href=\""  . $path . "$value\" title=\"Quality Control (stage : $new_value)\">";
                                     echo "<div class=\"project_box_one\">";
-                                        echo "<img src=\"$value\" alt=\"pro1\" />";
+                                        echo "<img src=\""  . $path . "$value\" alt=\"pro1\" />";
                                         echo "<div class=\"product_info\">";
                                             echo "<div class=\"product_info_text\">";
                                                 echo "<div class=\"product_info_text_inner\">";
@@ -265,9 +265,9 @@
 
 						foreach ($beta_dist as $value) {
                         echo "<div class=\"grid-item BVD col-sm-12 col-md-6 col-lg-3\">";
-                            echo "<a href=\"$value\" title=\"BVD Plot (stage : $value)\">";
+                            echo "<a href=\""  . $path . "$value\" title=\"BVD Plot (stage : $value)\">";
                                 echo "<div class=\"project_box_one\">";
-                                    echo "<img src=\"$value\" alt=\"pro1\" />";
+                                    echo "<img src=\""  . $path . "$value\" alt=\"pro1\" />";
                                     echo "<div class=\"product_info\">";
                                         echo "<div class=\"product_info_text\">";
                                             echo "<div class=\"product_info_text_inner\">";

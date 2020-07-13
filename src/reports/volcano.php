@@ -26,6 +26,9 @@
 					echo "Error in processing data, try again or contact administrator.";
 					exit();
 				}
+				$result_id       =   $_GET['result_id'];
+                $target_folder   = "/mnt/data/uploads/results/" . $result_id;
+                chdir($target_folder);
 				$file_snps			=	"graph_plotting_snps_" . $data . ".csv";
 				$file_non_snps		=	"graph_plotting_non_snps_" . $data . ".csv";
 				
