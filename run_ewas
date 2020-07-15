@@ -9,5 +9,11 @@ then
   export $(cat .env | xargs)
 fi
 
+
+if [ -f ~/ewas_config ]
+then
+  export $(cat ~/ewas_config | xargs)
+fi
+
 singularity run --writable-tmpfs --no-home -B ${PWD}/temp:/var/run/apache2/,${PWD}/ewas_data/uploads:/mnt/data/uploads  ewas.img ./main.sh -o  ${EWAS_OUT} \
  -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT} -f ${EWAS_EMAIL_FROM}  -h ${EWAS_EMAIL_HOST}  -p ${EWAS_EMAIL_PORT} -s ${EWAS_EMAIL_USER} -w ${EWAS_EMAIL_PASSWORD}  $@

@@ -3,3 +3,4 @@ ewas_data/*
 temp/*
 myports.conf
 slurm-*.out
+.DS_Store

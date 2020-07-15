@@ -29,11 +29,8 @@ To build both Docker and Singularity images run `sudo ./build`
 
 # Environment variables
 
-These are best set in a .env file that can be placed in the same folder as the run_ewas or run_ewas_slurm script. Sample .env file is available in this project  
+These are best set in a ewas_config file that should be placed in the user's home folder for security reasons as it contains email password. Sample ewas_config file is available in this project  
 
-EWAS_OUT - path to the directory to be used as output directory - not used currently  
-EWAS_UPLOADS - path to the directory to be used as uploads directory - this is where the uploaded files will be stored as well as results  
-EWAS_RESULTS - path to the directory to be used as results directory - not used currently  
 EWAS_EMAIL_FROM - "from" email address to be used in the job report email  
 EWAS_EMAIL_HOST - email server host to be used for sending the job report email (i.e. smtp.gmail.com)  
 EWAS_EMAIL_PORT - email server port to be used for sending the job report email (i.e. 495)  

@@ -10,6 +10,12 @@ then
   export $(cat .env | xargs)
 fi
 
+
+if [ -f ~/ewas_config ]
+then
+  export $(cat ~/ewas_config | xargs)
+fi
+
 # set input variables here
 export EWAS_PORT=10083  # port must not in use by other users, make sure it is the same port your forwarded to the cluster
 export EWAS_IMG=${PWD}/ewas.img  # path to the EWAS singularity image you uploaded

@@ -4,6 +4,11 @@ then
   export $(cat .env | xargs)
 fi
 
+if [ -f ~/ewas_config ]
+then
+  export $(cat ~/ewas_config | xargs)
+fi
+
 docker run -p 8083:8083 --mount type=bind,source=$EWAS_OUT,target=/app/out \
 						--mount type=bind,source=$EWAS_UPLOADS,target=/mnt/data/uploads \
 						--mount type=bind,source=$EWAS_RESULTS,target=/app/results ewas1 \

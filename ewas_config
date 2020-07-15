@@ -1,6 +1,3 @@
-EWAS_OUT="/data/ewas_data/out"
-EWAS_UPLOADS="/data/ewas_data/uploads"
-EWAS_RESULTS="/data/ewas_data/results"
 EWAS_EMAIL_FROM="no-reply@server.com"
 EWAS_EMAIL_HOST="smtp.server.com"
 EWAS_EMAIL_PORT="465"
