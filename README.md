@@ -29,7 +29,7 @@ To build both Docker and Singularity images run `sudo ./build`
 
 # Environment variables
 
-These are best set in a ewas_config file that should be placed in the user's home folder for security reasons as it contains email password. Sample ewas_config file is available in this project  
+These are best set in the ewas_config file that should be placed in the user's home folder for security reasons as it contains email password. Sample ewas_config file is available in this project  
 
 EWAS_EMAIL_FROM - "from" email address to be used in the job report email  
 EWAS_EMAIL_HOST - email server host to be used for sending the job report email (i.e. smtp.gmail.com)  
