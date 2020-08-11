@@ -60,7 +60,7 @@ Alias "/files" "/mnt/data/uploads/results"
 EOF
 
 # with email 
-singularity run --writable-tmpfs --no-home -B ${EWAS_TEMP}:/var/run/apache2/,${PWD}/ewas_data/uploads:/mnt/data/uploads,${PWD}/myports.conf:/etc/apache2/ports.conf ${EWAS_IMG} ./main.sh -o  ${EWAS_OUT} \
+singularity run --writable-tmpfs --no-home -B ${EWAS_TEMP}:/var/run/apache2/,${PWD}/ewas_data/uploads:/mnt/data/uploads,${PWD}/myports.conf:/etc/apache2/ports.conf ${EWAS_IMG} /var/www/html/main.sh -o  ${EWAS_OUT} \
  -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT} -f ${EWAS_EMAIL_FROM}  -h ${EWAS_EMAIL_HOST}  -p ${EWAS_EMAIL_PORT} -s ${EWAS_EMAIL_USER} -w ${EWAS_EMAIL_PASSWORD}  $@
 
 # without email (probably won't work)
