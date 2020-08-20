@@ -25,6 +25,7 @@ EWAS_EMAIL_HOST=""
 EWAS_EMAIL_PORT=""
 EWAS_EMAIL_USER=""
 EWAS_EMAIL_PASSWORD=""
+EWAS_BASE_WEB_PATH=""
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -34,6 +35,11 @@ key="$1"
 case $key in
     -m|--mode)
     MODE="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -b|--base)
+    EWAS_BASE_WEB_PATH="$2"
     shift # past argument
     shift # past value
     ;;
@@ -102,6 +108,7 @@ echo "EWAS_ROOT = $EWAS_ROOT"
 echo "EWAS_EMAIL_FROM = $EWAS_EMAIL_FROM"
 echo "EWAS_EMAIL_HOST = $EWAS_EMAIL_HOST"
 echo "EWAS_EMAIL_PORT = $EWAS_EMAIL_PORT"
+echo "EWAS_BASE_WEB_PATH = $EWAS_BASE_WEB_PATH"
 
 if [ "$MODE" = "web" ] 
 then

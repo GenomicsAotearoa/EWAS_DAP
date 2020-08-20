@@ -46,7 +46,7 @@
                 chdir($target_folder);
                 $com_type		=	file_get_contents("com_type.txt");
                 $com_type		=	str_replace('"','',$com_type);
-                $path = "/files/" . $result_id . "/";
+                $path = getenv('EWAS_BASE_WEB_PATH') . "/files/" . $result_id . "/";
             ?>
             <!--filter menu -->
             <div class="side_menu_section">
