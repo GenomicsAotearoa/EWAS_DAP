@@ -306,20 +306,20 @@
 
 
 <!-- jquery -->
-<script src="http://skuastk.org/ewas/assets/js/jquery.min.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/jquery.min.js"></script>
 <!-- bootstrap -->
-<script src="http://skuastk.org/ewas/assets/js/popper.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/popper.js"></script>
 <!--slick carousel -->
 <!--Portfolio Filter-->
-<script src="http://skuastk.org/ewas/assets/js/imgloaded.js"></script>
-<script src="http://skuastk.org/ewas/assets/js/isotope.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/imgloaded.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/isotope.js"></script>
 <!-- Magnific-popup -->
-<script src="http://skuastk.org/ewas/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/jquery.magnific-popup.min.js"></script>
 <!--Counter-->
-<script src="http://skuastk.org/ewas/assets/js/jquery.counterup.min.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/jquery.counterup.min.js"></script>
 <!-- WOW JS -->
-<script src="http://skuastk.org/ewas/assets/js/wow.min.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/wow.min.js"></script>
 <!-- Custom js -->
-<script src="http://skuastk.org/ewas/assets/js/main.js"></script>
+<script src="https://skuastk.org/ewas/assets/js/main.js"></script>
 </body>
 </html>
