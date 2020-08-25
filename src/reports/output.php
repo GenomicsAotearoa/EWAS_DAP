@@ -10,11 +10,11 @@
     <link rel="icon" href="fav.ico">
 	
     <!-- Bootstrap CSS -->
-    <link href="http://skuastk.org/ewas/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://skuastk.org/ewas/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Magnific-popup -->
-    <link rel="stylesheet" href="http://skuastk.org/ewas/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="https://skuastk.org/ewas/assets/css/magnific-popup.css">
     <!-- Custom styles for this template -->
-    <link href="http://skuastk.org/ewas/assets/css/main.css" rel="stylesheet">
+    <link href="https://skuastk.org/ewas/assets/css/main.css" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
 </head>
 
@@ -33,13 +33,6 @@
         <!--=================== side menu ====================-->
         <div class="col-lg-2 col-md-3 col-12 menu_block">
 
-            <!--logo -->
-            <div class="logo_box">
-                <a href="#">
-                    <img src="/reports/assets/ga_logo.jpeg" alt="cocoon">
-                </a>
-            </div>
-            <!--logo end-->
             <?php
                 $result_id       =   $_GET['result_id'];
                 $target_folder   = "/mnt/data/uploads/results/" . $result_id;
@@ -47,7 +40,17 @@
                 $com_type		=	file_get_contents("com_type.txt");
                 $com_type		=	str_replace('"','',$com_type);
                 $path = getenv('EWAS_BASE_WEB_PATH') . "/files/" . $result_id . "/";
+                $asset_path = getenv('EWAS_BASE_WEB_PATH') . "/reports/assets/";
             ?>
+            <!--logo -->
+            <div class="logo_box">
+                <a href="#">
+                    <?php
+                        echo "<img src=\"" . $asset_path . "ga_logo.jpeg\" alt=\"cocoon\">"
+                    ?>
+                </a>
+            </div>
+            <!--logo end-->
             <!--filter menu -->
             <div class="side_menu_section">
                 <h4 class="side_title">EWAS Output</h4>
@@ -143,9 +146,9 @@
                     
                  echo "</ul>";
                  echo "<br/><br/>";
-                 echo "<img src=\"/reports/assets/svd_convention.jpg\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
+                 echo "<img src=\"" . $asset_path . "svd_convention.jpg\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
 		 echo "<br/><br/>";
-		 echo "<img src=\"/reports/assets/uoo.png\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
+		 echo "<img src=\"" . $asset_path . "uoo.png\" style=\"display: block; margin-left: auto; margin-right: auto; width: 50%;\" />";
              echo "</div>";
 			
 			?>

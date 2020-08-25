@@ -1,8 +1,8 @@
 <html>
 <head>
 		<title>Manhattan plot</title>
-		<script src="http://skuastk.org/ewas/JS_HighCharts/highcharts.js"></script>
-		<script src="http://skuastk.org/ewas/JS_HighCharts/exporting.js"></script>
+		<script src="https://skuastk.org/ewas/JS_HighCharts/highcharts.js"></script>
+		<script src="https://skuastk.org/ewas/JS_HighCharts/exporting.js"></script>
 </head>
 <body>
 

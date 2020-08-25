@@ -1,9 +1,9 @@
 <html>
 <head>
 		<title>Volcano plot</title>
-		<script src="http://skuastk.org/ewas/JS_HighCharts/highcharts.js"></script>
-		<script src="http://skuastk.org/ewas/JS_HighCharts/boost.js"></script>
-		<script src="http://skuastk.org/ewas/JS_HighCharts/exporting.js"></script>
+		<script src="https://skuastk.org/ewas/JS_HighCharts/highcharts.js"></script>
+		<script src="https://skuastk.org/ewas/JS_HighCharts/boost.js"></script>
+		<script src="https://skuastk.org/ewas/JS_HighCharts/exporting.js"></script>
 </head>
 <style>
 .highcharts-figure, .highcharts-data-table table {
