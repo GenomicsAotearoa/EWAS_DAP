@@ -783,8 +783,8 @@ vol_vis 	<-		file.copy("../out/volcano.php", file, overwrite = TRUE)
 file		<-		paste(foldername, "/manhattan.php", sep = "")
 vol_vis 	<-		file.copy("../out/manhattan.php", file, overwrite = TRUE)
 
-
-link		<-		paste("Hi,\n\nHere is the data analysis result.\n", number_of_dmps, "http://localhost:8083/reports/output.php?result_id=", folder,  "\n\n\nAnalysis summary:\n\n", output, sep="") 
+reports_url <-		paste(Sys.getenv("EWAS_REPORT_PATH", "http://localhost:8083"), "/reports/output.php?result_id=", sep="")
+link		<-		paste("Hi,\n\nHere is the data analysis result.\n", number_of_dmps, reports_url, folder,  "\n\n\nAnalysis summary:\n\n", output, sep="") 
 
 send.mail(from = Sys.getenv('EWAS_EMAIL_FROM'), to = email, subject = "EWAS Data analysis result", body = link, smtp = list(host.name =  Sys.getenv('EWAS_EMAIL_HOST'), port = Sys.getenv('EWAS_EMAIL_PORT'), user.name = Sys.getenv('EWAS_EMAIL_USER'), passwd = Sys.getenv('EWAS_EMAIL_PASSWORD'), ssl = TRUE), authenticate = TRUE, send = TRUE)
 

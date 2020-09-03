@@ -26,6 +26,7 @@ EWAS_EMAIL_PORT=""
 EWAS_EMAIL_USER=""
 EWAS_EMAIL_PASSWORD=""
 EWAS_BASE_WEB_PATH=""
+EWAS_REPORT_PATH="http://localhost:10083"
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -40,6 +41,11 @@ case $key in
     ;;
     -b|--base)
     EWAS_BASE_WEB_PATH="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -e|--report)
+    EWAS_REPORT_PATH="$2"
     shift # past argument
     shift # past value
     ;;
@@ -109,10 +115,11 @@ echo "EWAS_EMAIL_FROM = $EWAS_EMAIL_FROM"
 echo "EWAS_EMAIL_HOST = $EWAS_EMAIL_HOST"
 echo "EWAS_EMAIL_PORT = $EWAS_EMAIL_PORT"
 echo "EWAS_BASE_WEB_PATH = $EWAS_BASE_WEB_PATH"
+echo "EWAS_REPORT_PATH = $EWAS_REPORT_PATH"
 
 if [ "$MODE" = "web" ] 
 then
-    printf "Subject: EWAS web app started\n\nEWAS web app has started. You can access it via web browser at http://localhost:10083" | msmtp --host=EWAS_EMAIL_HOST --from=EWAS_EMAIL_FROM --port=EWAS_EMAIL_PORT --auth=on --tls=on --user=EWAS_EMAIL_USER --passwordeval="echo $EWAS_EMAIL_PASSWORD" EWAS_EMAIL_FROM
+    printf "Subject: EWAS web app started\n\nEWAS web app has started. You can access it via web browser at %s" $EWAS_REPORT_PATH | msmtp --host=$EWAS_EMAIL_HOST --from=$EWAS_EMAIL_FROM --port=$EWAS_EMAIL_PORT --auth=on --tls=on --user=$EWAS_EMAIL_USER --passwordeval="echo $EWAS_EMAIL_PASSWORD" $EWAS_EMAIL_FROM
     cd /var/www/html
     apache2-foreground
     # while true; do sleep 1000; done;
