@@ -8,7 +8,8 @@ Build the docker and singularity images, make sure .env file contains the right 
 
 # Building Docker image
 
-Note: to build the Docker image you need to have priviledged access
+Note: in most cases, to build the Docker image you need to have priviledged access. It is possible to run docker without 'sudo'
+if the system is configured appropriately (see https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo for reference). Running rootless docker in rootless mode is also possible, more details on: https://docs.docker.com/engine/security/rootless/
 
 1. install docker as described here: https://docs.docker.com/engine/install/ 
 2. run `sudo ./build_docker`
