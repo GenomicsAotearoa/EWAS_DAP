@@ -65,10 +65,16 @@ Alias "/files" "/mnt/data/uploads/results"
 EOF
 echo "Written custom myports.conf to: ${portfile}"
 
+# check email options set, fail otherwise
+if [ -z "${EWAS_EMAIL_FROM}" ] | [ -z "${EWAS_EMAIL_HOST}" | [ -z "${EWAS_EMAIL_PORT}"] | [ -z "${EWAS_EMAIL_USER}" ] | [ -z "${EWAS_EMAIL_PASSWORD}" ]; then
+    echo "Error: make sure you configure email environment variables such as EWAS_EMAIL_FROM, see the README for instructions"
+    exit 1
+fi
+
 # run the web app
 echo "Running EWASP from: $(pwd)"
-singularity run --writable-tmpfs --no-home -B ${PWD},${EWAS_TEMP}:/var/run/apache2/,${EWAS_UPLOADS}:/mnt/data/uploads,${portfile}:/etc/apache2/ports.conf ${EWAS_IMG} /var/www/html/main.sh -o  ${EWAS_OUT} \
- -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT} -f ${EWAS_EMAIL_FROM}  -h ${EWAS_EMAIL_HOST}  -p ${EWAS_EMAIL_PORT} -s ${EWAS_EMAIL_USER} -w ${EWAS_EMAIL_PASSWORD}  -b ${EWAS_BASE_WEB_PATH} -e ${EWAS_REPORT_PATH} $@
+singularity run --writable-tmpfs --no-home -B ${PWD},${EWAS_TEMP}:/var/run/apache2/,${EWAS_UPLOADS}:/mnt/data/uploads,${portfile}:/etc/apache2/ports.conf ${EWAS_IMG} /var/www/html/main.sh -o  "${EWAS_OUT}" \
+ -u "${EWAS_UPLOADS}" -r "${EWAS_RESULTS}" -t "${EWAS_ROOT}" -f "${EWAS_EMAIL_FROM}" -h "${EWAS_EMAIL_HOST}" -p "${EWAS_EMAIL_PORT}" -s "${EWAS_EMAIL_USER}" -w "${EWAS_EMAIL_PASSWORD}" -b "${EWAS_BASE_WEB_PATH}" -e "${EWAS_REPORT_PATH}" $@
 
 # tidy up
 rm ${portfile}
