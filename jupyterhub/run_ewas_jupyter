@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=ewas     # job name in the queue
-#SBATCH --time=01:00:00     # wall time
+#SBATCH --time=00:15:00     # wall time
 #SBATCH --ntasks=1          # number of tasks (e.g. MPI processes)
 #SBATCH --cpus-per-task=1   # number of threads per task (e.g. OpenMP)
 #SBATCH --mem=8G            # amount of memory to request
@@ -20,8 +20,9 @@ then
 fi
 
 # set input variables here
-export EWAS_PORT=$1
+export EWAS_PORT=${1:-8080}
 export EWAS_BASE_WEB_PATH=$2
+#export EWAS_BASE_WEB_PATH=${2-/user/${USER}/proxy/$(hostname)/${EWAS_PORT}}
 export EWAS_IMG=${ROOT}/ewas.img
 export EWAS_ROOT=${ROOT}/ewas_data
 export EWAS_OUT=${EWAS_ROOT}/out
@@ -36,6 +37,7 @@ module load Singularity
 
 # report node and port ewasp is running on
 echo "EWASP starting on $(hostname) and listening on port ${EWAS_PORT}"
+#echo "Proxy via JupyterLab: https://jupyter.nesi.org.nz/user-redirect/proxy/$(hostname)/${EWAS_PORT}/"
 echo "Setting EWASP base web path: ${EWAS_BASE_WEB_PATH}"
 
 # make sure directories exist
@@ -66,7 +68,7 @@ EOF
 echo "Written custom myports.conf to: ${portfile}"
 
 # check email options set, fail otherwise
-if [ -z "${EWAS_EMAIL_FROM}" ] | [ -z "${EWAS_EMAIL_HOST}" | [ -z "${EWAS_EMAIL_PORT}"] | [ -z "${EWAS_EMAIL_USER}" ] | [ -z "${EWAS_EMAIL_PASSWORD}" ]; then
+if [ -z "${EWAS_EMAIL_FROM}" ] | [ -z "${EWAS_EMAIL_HOST}" ] | [ -z "${EWAS_EMAIL_PORT}"] | [ -z "${EWAS_EMAIL_USER}" ] | [ -z "${EWAS_EMAIL_PASSWORD}" ]; then
     echo "Error: make sure you configure email environment variables such as EWAS_EMAIL_FROM, see the README for instructions"
     exit 1
 fi
