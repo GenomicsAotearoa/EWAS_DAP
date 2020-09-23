@@ -5,6 +5,10 @@
 #SBATCH --cpus-per-task=1   # number of threads per task (e.g. OpenMP)
 #SBATCH --mem=8G            # amount of memory to request
 
+# change to root directory here
+export ROOT=/nesi/project/nesi99999/csco212/ewas_project/rundir
+cd $ROOT
+
 if [ -f .env ]
 then
   export $(cat .env | xargs)
@@ -14,9 +18,6 @@ if [ -f ~/ewas_config ]
 then
   export $(cat ~/ewas_config | xargs)
 fi
-
-export ROOT=/nesi/project/ga02964
-cd $ROOT
 
 # set input variables here
 export EWAS_PORT=$1
@@ -32,12 +33,10 @@ export EWAS_TEMP=${ROOT}/temp
 
 # load singularity module
 module load Singularity
-#ml Singularity/3.5.2
 
-# set up port forwarding between node that submitted job to compute node it is running on
-echo "EWAS starting on $(hostname) and listening on port $1"
-#echo "EWAS will be started on $(hostname) and port forwarding established from $SLURM_SUBMIT_HOST on port ${EWAS_PORT}"
-#ssh -N -R ${EWAS_PORT}:localhost:${EWAS_PORT} $SLURM_SUBMIT_HOST &
+# report node and port ewasp is running on
+echo "EWASP starting on $(hostname) and listening on port ${EWAS_PORT}"
+echo "Setting EWASP base web path: ${EWAS_BASE_WEB_PATH}"
 
 # make sure directories exist
 mkdir -p $EWAS_TEMP
@@ -64,13 +63,8 @@ Alias "/files" "/mnt/data/uploads/results"
 </Directory>
 EOF
 
-pwd
-ls -l
+echo "Running EWASP from: $(pwd)"
 
-# with email 
+# run the web app
 singularity run --writable-tmpfs --no-home -B ${PWD},${EWAS_TEMP}:/var/run/apache2/,${EWAS_UPLOADS}:/mnt/data/uploads,${PWD}/myports.conf:/etc/apache2/ports.conf ${EWAS_IMG} /var/www/html/main.sh -o  ${EWAS_OUT} \
  -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT} -f ${EWAS_EMAIL_FROM}  -h ${EWAS_EMAIL_HOST}  -p ${EWAS_EMAIL_PORT} -s ${EWAS_EMAIL_USER} -w ${EWAS_EMAIL_PASSWORD}  -b ${EWAS_BASE_WEB_PATH} -e ${EWAS_REPORT_PATH} $@
-
-# without email (probably won't work)
-# singularity run --writable-tmpfs --no-home -B ${EWAS_TEMP}:/var/run/apache2/,${PWD}/ewas_data/uploads:/mnt/data/uploads,${PWD}/myports.conf:/etc/apache2/ports.conf ${EWAS_IMG} ./main.sh -o  ${EWAS_OUT} \
-# -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT}  $@
