@@ -1,4 +1,4 @@
 #!/bin/bash
-docker build --no-cache -t ewas .
+docker build -t ewas .
 # docker tag dashboard ewas:latest
 # docker push ewas:latest
