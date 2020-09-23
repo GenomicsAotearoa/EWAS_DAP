@@ -45,7 +45,8 @@ mkdir -p $EWAS_UPLOADS
 mkdir -p $EWAS_RESULTS
 
 # create the myports.conf with custom port
-cat << EOF > ${PWD}/myports.conf
+portfile=$(mktemp $PWD/myports.conf.XXXXXX)
+cat << EOF > ${portfile}
 Listen $EWAS_PORT
 
 <IfModule ssl_module>
@@ -62,9 +63,12 @@ Alias "/files" "/mnt/data/uploads/results"
     Require all granted
 </Directory>
 EOF
-
-echo "Running EWASP from: $(pwd)"
+echo "Written custom myports.conf to: ${portfile}"
 
 # run the web app
-singularity run --writable-tmpfs --no-home -B ${PWD},${EWAS_TEMP}:/var/run/apache2/,${EWAS_UPLOADS}:/mnt/data/uploads,${PWD}/myports.conf:/etc/apache2/ports.conf ${EWAS_IMG} /var/www/html/main.sh -o  ${EWAS_OUT} \
+echo "Running EWASP from: $(pwd)"
+singularity run --writable-tmpfs --no-home -B ${PWD},${EWAS_TEMP}:/var/run/apache2/,${EWAS_UPLOADS}:/mnt/data/uploads,${portfile}:/etc/apache2/ports.conf ${EWAS_IMG} /var/www/html/main.sh -o  ${EWAS_OUT} \
  -u ${EWAS_UPLOADS} -r ${EWAS_RESULTS} -t ${EWAS_ROOT} -f ${EWAS_EMAIL_FROM}  -h ${EWAS_EMAIL_HOST}  -p ${EWAS_EMAIL_PORT} -s ${EWAS_EMAIL_USER} -w ${EWAS_EMAIL_PASSWORD}  -b ${EWAS_BASE_WEB_PATH} -e ${EWAS_REPORT_PATH} $@
+
+# tidy up
+rm ${portfile}
