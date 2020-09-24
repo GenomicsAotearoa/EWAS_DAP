@@ -6,7 +6,8 @@
 #SBATCH --mem=8G            # amount of memory to request
 
 # change to root directory here
-export ROOT=/nesi/project/nesi99999/csco212/ewas_project/rundir
+export ROOT=/nesi/project/ga02964
+#export ROOT=/nesi/project/nesi99999/csco212/ewas_project/rundir
 cd $ROOT
 
 if [ -f .env ]
@@ -68,7 +69,7 @@ EOF
 echo "Written custom myports.conf to: ${portfile}"
 
 # check email options set, fail otherwise
-if [ -z "${EWAS_EMAIL_FROM}" ] | [ -z "${EWAS_EMAIL_HOST}" ] | [ -z "${EWAS_EMAIL_PORT}"] | [ -z "${EWAS_EMAIL_USER}" ] | [ -z "${EWAS_EMAIL_PASSWORD}" ]; then
+if [ -z "${EWAS_EMAIL_FROM}" ] || [ -z "${EWAS_EMAIL_HOST}" ] || [ -z "${EWAS_EMAIL_PORT}" ] || [ -z "${EWAS_EMAIL_USER}" ] || [ -z "${EWAS_EMAIL_PASSWORD}" ]; then
     echo "Error: make sure you configure email environment variables such as EWAS_EMAIL_FROM, see the README for instructions"
     exit 1
 fi
