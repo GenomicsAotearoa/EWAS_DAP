@@ -30,6 +30,7 @@ export EWAS_OUT=${EWAS_ROOT}/out
 export EWAS_UPLOADS=${EWAS_ROOT}/uploads
 export EWAS_RESULTS=${EWAS_UPLOADS}/results
 export EWAS_TEMP=${ROOT}/temp
+export EWAS_REPORT_PATH="https://jupyter.nesi.org.nz/user-redirect/EWASP"
 
 # should not need to edit below this line
 
