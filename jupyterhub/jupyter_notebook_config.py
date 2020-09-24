@@ -1,6 +1,6 @@
 c.ServerProxy.servers = {
   'EWASP': {
-    'command': ['/nesi/project/ga02964/run_ewas_arg', '{port}', '{base_url}EWASP'],
+    'command': ['/nesi/project/ga02964/run_ewas_jupyter', '{port}', '{base_url}EWASP'],
     'timeout': 10,
   },
 }
