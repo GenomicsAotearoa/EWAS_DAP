@@ -39,7 +39,7 @@
 									{
 										if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
 										{
-											echo "<li><a href=\"" . $path . $value .\">" . $value . "</a></li>";
+											echo "<li><a href=\"" . $path . $value ."\">" . $value . "</a></li>";
 										}
 									}
 								}
