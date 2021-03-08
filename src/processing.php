@@ -184,9 +184,9 @@ if($number_of_covar > 0) {
 }
 }
 
-#permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-#foldername = substr(str_shuffle($permitted_chars), 0, 20);
+foldername = substr(str_shuffle($permitted_chars), 0, 20);
 
 
 #rename("$ip/covar.csv", "$ip/covar.txt");
@@ -202,7 +202,7 @@ if($number_of_samples < 250 && $norm_value < 6) {
 copy("r_script_LDS.R", "$ip/run.R");
 #shell_exec("export LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib && nohup Rscript /opt/lampp/htdocs/ewas/ewas_pip/$ip/run.R $ip $norm_method $email $snp $xy_chr $cr_probes $pheno $design_matrix $norm_method_selection $array_type $deconv $com_group $array_corr $batch_corr $foldername > file.out 2> file.error < /dev/null &");
 
-shell_exec("LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib nohup Rscript $ip/run.R $ip $norm_method $email $snp $xy_chr $cr_probes $pheno $design_matrix $norm_method_selection $array_type $deconv $com_group $array_corr $batch_corr $norm_name > $ip/file.out 2> $ip/file.error < /dev/null &");
+shell_exec("LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib nohup Rscript $ip/run.R $ip $norm_method $email $snp $xy_chr $cr_probes $pheno $design_matrix $norm_method_selection $array_type $deconv $com_group $array_corr $batch_corr $norm_name $foldername > $ip/file.out 2> $ip/file.error < /dev/null &");
 
 #shell_exec("start Rscript C:/xampp/htdocs/ewas_dap/$ip/run.R $ip $norm_method $email $snp $xy_chr $cr_probes $pheno $design_matrix $norm_method_selection $array_type $deconv $com_group $array_corr $batch_corr > log.txt 2> errors.txt");
 	/* 
@@ -221,6 +221,8 @@ shell_exec("LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib nohup Rscript $ip
 	   12. Comparision type
 	   13. Array Correction yes/no
 	   14. Batch Correction yes/no
+	   15. Output folder name
+
 	*/
 ?>
 
