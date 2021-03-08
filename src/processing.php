@@ -224,11 +224,14 @@ shell_exec("LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib nohup Rscript $ip
 	   15. Output folder name
 
 	*/
+	$out_link	=	"https://jupyter.nesi.org.nz/user-redirect/EWASP/reports/output.php?result_id=".$foldername;
 ?>
 
-	Your job is running, link to output page will be shared at <b><?php echo "$email"; ?></b>
+	<font size="+2">Your job is running.</font>
+	<br/><br/>
+	<a href="<?php echo "$out_link"; ?>" target="_blank"> Click here for output page. </a><br/><br/>
+	Link to the output page will be shared at <b><?php echo "$email"; ?></b>
 	<br/>
-	<img src ="img/loading.gif" width ="50px" height="50px" style="margin-left: auto; margin-right: auto;display: block;" />
 							
 					  </section>
 					</div>
