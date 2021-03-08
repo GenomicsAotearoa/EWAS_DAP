@@ -1,17 +1,3 @@
-stringGen <- function(n=1, lenght=20)
-{
-    randomString <- c(1:n)                  # initialize vector
-    for (i in 1:n)
-    {
-        randomString[i] <- paste(sample(c(0:9, letters, LETTERS),
-                                 lenght, replace=TRUE),
-                                 collapse="")
-    }
-    return(randomString)
-}
-folder		<-	stringGen()
-
-
 
 args					<-	commandArgs(TRUE)
 dir 					<-	toString(args[1])
@@ -21,14 +7,16 @@ snp 					<-	toString(args[4])
 xy_chr	 				<-	toString(args[5])
 cr_pro 					<-	toString(args[6])
 pheno 					<-	toString(args[7])
-DM	 					<-	toString(args[8])
-data_load_method		<-	toString(args[9])           # 1 for champ and 2 for minfi
-arraytype				<-	toString(args[10])			#"EPIC" and "450K"
+DM	 				<-	toString(args[8])
+data_load_method			<-	toString(args[9])           # 1 for champ and 2 for minfi
+arraytype				<-	toString(args[10])	    #"EPIC" and "450K"
 deconv					<-	toString(args[11])			
 com_type				<-	toString(args[12])
-array_corr				<-  toString(args[13])
+array_corr				<-  	toString(args[13])
 batch_corr				<-	toString(args[14])
-norm_name               <-  toString(args[15])
+norm_name               		<-  	toString(args[15])
+folder	               			<-  	toString(args[16])
+
 
 
 
