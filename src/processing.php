@@ -184,9 +184,9 @@ if($number_of_covar > 0) {
 }
 }
 
-permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-foldername = substr(str_shuffle($permitted_chars), 0, 20);
+$foldername = substr(str_shuffle($permitted_chars), 0, 20);
 
 
 #rename("$ip/covar.csv", "$ip/covar.txt");
@@ -216,12 +216,12 @@ shell_exec("LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib nohup Rscript $ip
 		7. Phenotype of interest
 		8. Covariates adjust for
 		9. Normalization Value (1 .. 7) 1 .. 5 for minfi; 6 .. 7 for ChAMP
-	   10. Arraytype
-	   11. Blood cell deconvulution
-	   12. Comparision type
-	   13. Array Correction yes/no
-	   14. Batch Correction yes/no
-	   15. Output folder name
+	   	10. Arraytype
+	   	11. Blood cell deconvulution
+	   	12. Comparision type
+	   	13. Array Correction yes/no
+	   	14. Batch Correction yes/no
+	   	15. Output folder name
 
 	*/
 	$out_link	=	"https://jupyter.nesi.org.nz/user-redirect/EWASP/reports/output.php?result_id=".$foldername;
