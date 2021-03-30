@@ -184,7 +184,7 @@ if($number_of_covar > 0) {
 }
 }
 
-$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$permitted_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 $foldername = substr(str_shuffle($permitted_chars), 0, 20);
 
@@ -229,7 +229,7 @@ shell_exec("LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/lib64/R/lib nohup Rscript $ip
 
 	<font size="+2">Your job is running.</font>
 	<br/><br/>
-	<a href="<?php echo "$out_link"; ?>" target="_blank"> Click here for output page. </a><br/><br/>
+	<a href="<?php echo $out_link; ?>" target="_blank"> Click here for output page. </a><br/><br/>
 	Link to the output page will be shared at <b><?php echo "$email"; ?></b>
 	<br/>
 							
